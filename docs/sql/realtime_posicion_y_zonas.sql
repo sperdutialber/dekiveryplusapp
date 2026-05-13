@@ -1,0 +1,15 @@
+CREATE TABLE repartidores_posicion (
+  id SERIAL PRIMARY KEY,
+  repartidor_id INTEGER NOT NULL,
+  lat NUMERIC NOT NULL,
+  lng NUMERIC NOT NULL,
+  fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE zonas_calientes (
+  id SERIAL PRIMARY KEY,
+  lat NUMERIC,
+  lng NUMERIC,
+  intensidad INTEGER,
+  fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Delivery Plus">
+  <rect width="128" height="128" rx="24" fill="#0A0F1F"/>
+  <path d="M25 71h45c12 0 22-10 22-22S82 27 70 27H42v21h28a1 1 0 0 1 0 2H25v21Z" fill="#00AEEF"/>
+  <path d="M42 81h44v20H42z" fill="#FFFFFF"/>
+  <path d="M92 77h16v10H92v16H82V87H66V77h16V61h10v16Z" fill="#00AEEF"/>
+</svg>

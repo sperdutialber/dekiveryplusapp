@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 660" role="img" aria-label="Mapa social">
+  <rect width="1000" height="660" rx="18" fill="#0A0F1F"/>
+  <g stroke="#00AEEF" stroke-width="3" opacity=".35">
+    <path d="M80 160c210 90 300-110 500-10s240-10 340-60"/>
+    <path d="M100 500c150-110 270 10 430-70s240 40 360-30"/>
+    <path d="M180 80v500M410 40v580M670 80v530M890 120v420"/>
+    <path d="M70 260h870M100 420h820"/>
+  </g>
+  <g stroke="#FFFFFF" stroke-width="4">
+    <path d="M230 190 410 330 620 210 790 400" fill="none"/>
+    <path d="M320 470 410 330 555 455 790 400" fill="none"/>
+  </g>
+  <g>
+    <circle cx="230" cy="190" r="42" fill="#00AEEF"/><circle cx="230" cy="178" r="13" fill="#FFFFFF"/><path d="M205 212c9-23 41-23 50 0" fill="#FFFFFF"/>
+    <circle cx="410" cy="330" r="48" fill="#FFFFFF"/><circle cx="410" cy="316" r="14" fill="#00AEEF"/><path d="M382 356c10-25 46-25 56 0" fill="#00AEEF"/>
+    <circle cx="620" cy="210" r="42" fill="#00AEEF"/><circle cx="620" cy="198" r="13" fill="#FFFFFF"/><path d="M595 232c9-23 41-23 50 0" fill="#FFFFFF"/>
+    <circle cx="790" cy="400" r="48" fill="#FFFFFF"/><circle cx="790" cy="386" r="14" fill="#00AEEF"/><path d="M762 426c10-25 46-25 56 0" fill="#00AEEF"/>
+    <circle cx="320" cy="470" r="40" fill="#00AEEF"/><circle cx="555" cy="455" r="40" fill="#00AEEF"/>
+  </g>
+</svg>

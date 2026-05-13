@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 280" role="img" aria-label="QR Delivery Plus">
+  <rect width="280" height="280" fill="#FFFFFF"/>
+  <g fill="#00AEEF">
+    <path d="M24 24h72v72H24zM184 24h72v72h-72zM24 184h72v72H24z"/>
+    <path d="M42 42h36v36H42zM202 42h36v36h-36zM42 202h36v36H42z" fill="#FFFFFF"/>
+    <path d="M116 28h18v18h-18zM148 28h18v50h-18zM116 62h18v34h-18zM116 118h50v18h-50zM184 118h18v18h-18zM220 118h36v18h-36zM116 152h18v50h-18zM148 152h54v18h-54zM220 152h18v18h-18zM148 186h18v18h-18zM184 186h72v18h-72zM116 220h50v18h-50zM184 220h18v36h-18zM220 220h36v18h-36zM220 254h18v2h-18z"/>
+  </g>
+  <text x="140" y="144" fill="#0A0F1F" font-family="Arial" font-size="18" font-weight="700" text-anchor="middle">DP</text>
+</svg>

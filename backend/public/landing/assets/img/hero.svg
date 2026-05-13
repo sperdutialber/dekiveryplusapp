@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 860" role="img" aria-label="Escena nocturna Delivery Plus">
+  <defs>
+    <linearGradient id="sky" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#071026"/><stop offset="1" stop-color="#111827"/></linearGradient>
+    <radialGradient id="glow" cx=".68" cy=".34" r=".55"><stop stop-color="#00AEEF" stop-opacity=".45"/><stop offset="1" stop-color="#00AEEF" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="1200" height="860" fill="url(#sky)"/>
+  <rect width="1200" height="860" fill="url(#glow)"/>
+  <g opacity=".55" fill="#1C1C1C">
+    <rect x="40" y="255" width="120" height="430"/><rect x="190" y="170" width="150" height="520"/><rect x="375" y="230" width="130" height="455"/>
+    <rect x="790" y="185" width="160" height="510"/><rect x="980" y="275" width="140" height="415"/>
+  </g>
+  <g fill="#00AEEF" opacity=".68">
+    <circle cx="105" cy="325" r="5"/><circle cx="250" cy="245" r="5"/><circle cx="445" cy="295" r="5"/><circle cx="840" cy="255" r="5"/><circle cx="1030" cy="345" r="5"/>
+    <path d="M0 710c175-34 345-34 520 0s342 35 680-9v159H0z" opacity=".22"/>
+  </g>
+  <g transform="translate(115 385)">
+    <circle cx="132" cy="62" r="42" fill="#FFFFFF"/>
+    <path d="M80 132c18-43 91-43 109 0l30 73H51z" fill="#00AEEF"/>
+    <rect x="206" y="44" width="70" height="116" rx="14" fill="#0A0F1F" stroke="#00AEEF" stroke-width="8"/>
+    <circle cx="241" cy="136" r="6" fill="#00AEEF"/>
+  </g>
+  <g transform="translate(520 330)">
+    <circle cx="155" cy="70" r="46" fill="#FFFFFF"/>
+    <path d="M90 140c23-48 108-48 130 0l38 92H52z" fill="#1C1C1C" stroke="#00AEEF" stroke-width="8"/>
+    <path d="M300 225h190l72 66H353z" fill="#00AEEF"/>
+    <circle cx="372" cy="318" r="50" fill="#0A0F1F" stroke="#FFFFFF" stroke-width="16"/>
+    <circle cx="535" cy="318" r="50" fill="#0A0F1F" stroke="#FFFFFF" stroke-width="16"/>
+    <path d="M355 185h130l38 40H320z" fill="#FFFFFF"/>
+  </g>
+  <path d="M70 716h1050" stroke="#00AEEF" stroke-width="4" stroke-opacity=".55"/>
+</svg>
