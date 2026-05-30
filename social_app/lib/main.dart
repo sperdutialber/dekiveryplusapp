@@ -6,6 +6,7 @@ import 'routes.dart';
 import 'data/services/auth_service.dart';
 import 'data/repositories/i_repository.dart';
 import 'data/repositories/mock_repository.dart';
+import 'data/repositories/mariadb_repository.dart'; // Importa MariaDB
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,8 +23,21 @@ void main() async {
     MultiProvider(
       providers: [
         Provider<AuthService>(create: (_) => AuthService()),
-        // Provide the repository. Toggle between Mock and MariaDB here.
+
+        // --- CONFIGURACIÓN DE REPOSITORIO ---
+        // Para usar MariaDB, comenta la línea de MockRepository y desconecta la de MariaDBRepository
+
         Provider<IRepository>(create: (_) => MockRepository()),
+
+        /*
+        Provider<IRepository>(create: (_) => MariaDBRepository(
+          host: 'TU_IP_LOCAL', // Ej: '192.168.1.50'
+          port: 3306,
+          user: 'root',
+          password: 'TU_PASSWORD',
+          db: 'social_app',
+        )),
+        */
       ],
       child: const SocialApp(),
     ),

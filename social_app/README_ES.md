@@ -19,9 +19,12 @@ El sistema utiliza una arquitectura modular:
 ## 💾 Configuración de Base de Datos (MariaDB)
 
 Para usar tu base de datos local:
-1. Abre `lib/main.dart`.
-2. Cambia `MockRepository()` por `MariaDBRepository(...)`.
-3. Proporciona la IP de tu PC, usuario y contraseña.
+1. **Importa el esquema:** Ejecuta el archivo `database/schema.sql` en tu servidor MariaDB (usando phpMyAdmin, HeidiSQL o consola).
+2. **Habilita el Repositorio:**
+   - Abre `lib/main.dart`.
+   - Comenta la línea de `MockRepository()`.
+   - Descomenta el bloque de `MariaDBRepository`.
+3. **Credenciales:** Asegúrate de poner la IP local de tu PC (no use 'localhost' si pruebas en un móvil físico, usa la IP de tu red WiFi).
 
 ## 🌐 Despliegue en Vercel
 
