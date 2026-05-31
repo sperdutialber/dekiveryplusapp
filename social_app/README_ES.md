@@ -26,7 +26,14 @@ Para usar tu base de datos local:
    - Descomenta el bloque de `MariaDBRepository`.
 3. **Credenciales:** Asegúrate de poner la IP local de tu PC (no use 'localhost' si pruebas en un móvil físico, usa la IP de tu red WiFi).
 
-## 🌐 Despliegue en Vercel
+## 🌐 Visualización en el Navegador (Local)
+
+Si quieres ver cómo queda la app sin instalarla en un móvil:
+1. Asegúrate de tener el soporte web activado: `flutter create --platforms web .`
+2. Ejecuta: `flutter run -d chrome` (o `edge`)
+3. La app se abrirá automáticamente en tu navegador.
+
+## 🚀 Despliegue en Vercel
 
 Vercel permite alojar la versión web de tu app Flutter de forma gratuita.
 
