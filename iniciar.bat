@@ -43,7 +43,6 @@ echo [3/3] Iniciando server_pc.py en puerto 5001...
 echo.
 echo ========================================
 echo   SERVIDOR AUDIO STREAM
-
 echo ========================================
 echo.
 cd /d "%~dp0"
