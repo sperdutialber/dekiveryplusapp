@@ -95,6 +95,11 @@ function animBars(lvl){
 
 function connect(){
   if(connected) return;
+  if(!WS_URL || WS_URL.includes('{{WS_URL}}')){
+    setStatus('error','Abrir desde servidor');
+    alert('No abras este archivo desde file://. Usa el servidor y abre la página desde http://localhost:5001 o desde la URL de ngrok.');
+    return;
+  }
   setStatus('connecting','Conectando...');
   socket=new WebSocket(WS_URL);
   socket.binaryType='arraybuffer';

@@ -38,16 +38,12 @@ if errorlevel 1 (
     timeout /t 3 /nobreak
 )
 
-REM Abrir servidor HTTP (opcional)
-echo [3/4] Iniciando servidor HTTP en puerto 8000...
-start "HTTP Server - Puerto 8000" cmd /k "cd /d "%~dp0" && python -m http.server 8000"
-timeout /t 2 /nobreak
-
 REM Iniciar server_pc.py
-echo [4/4] Iniciando server_pc.py...
+echo [3/3] Iniciando server_pc.py en puerto 5001...
 echo.
 echo ========================================
 echo   SERVIDOR AUDIO STREAM
+
 echo ========================================
 echo.
 cd /d "%~dp0"

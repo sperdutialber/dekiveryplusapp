@@ -24,6 +24,12 @@ Instrucciones rápidas
 python server_pc.py
 ```
 
+- Abrir el cliente desde el servidor (no desde file://):
+
+```bash
+http://localhost:5001
+```
+
 - Exponer el puerto 5001 con ngrok (ejemplo):
 
 ```bash
