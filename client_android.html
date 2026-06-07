@@ -79,11 +79,98 @@ function setStatus(cls,txt){
   document.getElementById('dot').className=cls;
   document.getElementById('stxt').textContent=txt;
 }
+
 function setVol(v){
   if(gainNode) gainNode.gain.value=parseFloat(v);
   document.getElementById('vpct').textContent=Math.round(v*100)+'%';
 }
+
 function animBars(lvl){
   bars.forEach(function(b,i){
     var c=(bars.length-1)/2, d=Math.abs(i-c)/c;
-    var h=Math.max(4,lvl*56*(
+    var h=Math.max(4,lvl*56*(1-d*d));
+    b.style.height=h+'px';
+  });
+}
+
+function connect(){
+  if(connected) return;
+  setStatus('connecting','Conectando...');
+  socket=new WebSocket(WS_URL);
+  socket.binaryType='arraybuffer';
+  
+  socket.onopen=function(){
+    setStatus('connected','Conectado');
+    connected=true;
+  };
+  
+  socket.onmessage=function(e){
+    var data=new Uint8Array(e.data);
+    var len=data.byteLength;
+    var newBuf=new Uint8Array(recvBuf.length+len);
+    newBuf.set(recvBuf);
+    newBuf.set(data,recvBuf.length);
+    recvBuf=newBuf;
+    if(recvBuf.length>=4){
+      var frameLen=(recvBuf[0]<<24)|(recvBuf[1]<<16)|(recvBuf[2]<<8)|recvBuf[3];
+      if(recvBuf.length>=4+frameLen){
+        playFrame(recvBuf.slice(4,4+frameLen));
+        recvBuf=recvBuf.slice(4+frameLen);
+      }
+    }
+  };
+  
+  socket.onerror=function(e){
+    setStatus('error','Error');
+    console.error('WS error',e);
+  };
+  
+  socket.onclose=function(){
+    connected=false;
+    setStatus('','Desconectado');
+  };
+}
+
+function playFrame(pcmData){
+  if(!audioCtx){
+    audioCtx=new(window.AudioContext||window.webkitAudioContext)();
+    gainNode=audioCtx.createGain();
+    gainNode.gain.value=parseFloat(document.getElementById('vol').value);
+    gainNode.connect(audioCtx.destination);
+  }
+  var len=pcmData.length/2;
+  var f32=new Float32Array(len);
+  for(var i=0;i<len;i++){
+    var s=pcmData[i*2]|(pcmData[i*2+1]<<8);
+    if(s>32767) s-=65536;
+    f32[i]=s/32768;
+  }
+  var src=audioCtx.createBufferSource();
+  var buf=audioCtx.createBuffer(1,len,RATE);
+  buf.getChannelData(0).set(f32);
+  src.buffer=buf;
+  src.connect(gainNode);
+  var t=Math.max(audioCtx.currentTime,nextPlay);
+  src.start(t);
+  nextPlay=t+buf.duration;
+  var lvl=0;
+  for(var i=0;i<len;i++) lvl+=Math.abs(f32[i]);
+  lvl/=len;
+  animBars(lvl);
+}
+
+function disconnect(){
+  if(socket){
+    socket.close();
+    socket=null;
+    connected=false;
+  }
+}
+
+function toggle(){
+  if(connected) disconnect();
+  else connect();
+}
+</script>
+</body>
+</html>
