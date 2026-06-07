@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Audio Stream</title>
+  <style>
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { font-family:-apple-system,sans-serif; background:#0f0f1a; color:#fff;
+           min-height:100vh; display:flex; align-items:center; justify-content:center; padding:20px; }
+    .card { background:#1a1a2e; border-radius:20px; padding:30px 25px;
+            width:100%; max-width:380px; box-shadow:0 8px 32px rgba(0,0,0,.4); }
+    h1 { font-size:1.4rem; font-weight:700; text-align:center; margin-bottom:6px; color:#a78bfa; }
+    .sub { text-align:center; font-size:.8rem; color:#6b7280; margin-bottom:28px; }
+    #visualizer { display:flex; align-items:flex-end; justify-content:center;
+                  gap:4px; height:60px; margin-bottom:24px; }
+    .bar { width:6px; background:#a78bfa; border-radius:3px; min-height:4px; transition:height .1s ease; }
+    .status-row { display:flex; align-items:center; justify-content:center; margin-bottom:24px; }
+    #dot { display:inline-block; width:10px; height:10px; border-radius:50%;
+           background:#6b7280; margin-right:8px; }
+    #dot.connecting { background:#f59e0b; animation:pulse 1s infinite; }
+    #dot.connected  { background:#10b981; }
+    #dot.error      { background:#ef4444; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+    #stxt { font-size:.9rem; color:#d1d5db; }
+    #btn { width:100%; padding:16px; border:none; border-radius:14px; font-size:1rem;
+           font-weight:600; cursor:pointer; background:#7c3aed; color:#fff; transition:all .2s; }
+    #btn:hover { background:#6d28d9; }
+    #btn:active { transform:scale(.97); }
+    .vol-row { display:flex; align-items:center; gap:10px; margin-top:20px; }
+    .vl { font-size:.8rem; color:#9ca3af; white-space:nowrap; }
+    #vol { flex:1; accent-color:#a78bfa; }
+    .info { background:#111827; border-radius:12px; padding:14px; margin-top:20px;
+            font-size:.78rem; color:#6b7280; line-height:1.6; }
+    .info strong { color:#9ca3af; }
+    #lat { font-size:.75rem; color:#6b7280; text-align:center; margin-top:12px; }
+  </style>
+</head>
+<body>
+<div class="card">
+  <h1>🎧 Audio Stream</h1>
+  <p class="sub">Escucha el audio de tu PC en tiempo real</p>
+  <div id="visualizer">
+    <div class="bar" style="height:8px"></div>
+    <div class="bar" style="height:16px"></div>
+    <div class="bar" style="height:24px"></div>
+    <div class="bar" style="height:32px"></div>
+    <div class="bar" style="height:40px"></div>
+    <div class="bar" style="height:32px"></div>
+    <div class="bar" style="height:24px"></div>
+    <div class="bar" style="height:16px"></div>
+    <div class="bar" style="height:8px"></div>
+  </div>
+  <div class="status-row">
+    <span id="dot"></span><span id="stxt">Desconectado</span>
+  </div>
+  <button id="btn" onclick="toggle()">▶ Conectar y escuchar</button>
+  <div class="vol-row">
+    <span class="vl">🔈</span>
+    <input type="range" id="vol" min="0" max="2" step="0.05" value="1" oninput="setVol(this.value)">
+    <span class="vl" id="vpct">100%</span>
+  </div>
+  <div id="lat"></div>
+  <div class="info">
+    <strong>Consejo:</strong> Conecta el auricular Bluetooth
+    <em>antes</em> de presionar Conectar.
+  </div>
+</div>
+<script>
+var WS_URL = 'wss://marauding-suitor-preflight.ngrok-free.dev';
+var RATE = 44100;
+var socket=null, audioCtx=null, gainNode=null;
+var connected=false, nextPlay=0;
+var bars=[], recvBuf=new Uint8Array(0);
+
+window.onload=function(){ bars=Array.from(document.querySelectorAll('.bar')); };
+
+function setStatus(cls,txt){
+  document.getElementById('dot').className=cls;
+  document.getElementById('stxt').textContent=txt;
+}
+function setVol(v){
+  if(gainNode) gainNode.gain.value=parseFloat(v);
+  document.getElementById('vpct').textContent=Math.round(v*100)+'%';
+}
+function animBars(lvl){
+  bars.forEach(function(b,i){
+    var c=(bars.length-1)/2, d=Math.abs(i-c)/c;
+    var h=Math.max(4,lvl*56*(
