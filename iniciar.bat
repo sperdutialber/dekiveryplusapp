@@ -29,12 +29,12 @@ if errorlevel 1 (
     echo   3. Copia ngrok.exe a C:\Windows\System32 o añade a PATH
     echo.
     echo Alternativamente, ejecuta ngrok manualmente:
-    echo   ngrok http 5000
+    echo   ngrok http 5001
     echo.
     pause
 ) else (
-    echo ngrok encontrado. Iniciando en puerto 5000...
-    start "ngrok - Port 5000" cmd /k "ngrok http 5000"
+    echo ngrok encontrado. Iniciando en puerto 5001...
+    start "ngrok - Port 5001" cmd /k "ngrok http 5001"
     timeout /t 3 /nobreak
 )
 

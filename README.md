@@ -4,7 +4,7 @@
 
 Estoy configurando ngrok
 
-IP local : 10.1.19.2:5000
+IP local : 10.1.19.2:5001
 
 Pega la URL de ngrok (sin https://):
 ngrok URL > marauding-suitor-preflight.ngrok-free.dev
@@ -24,10 +24,10 @@ Instrucciones rápidas
 python server_pc.py
 ```
 
-- Exponer el puerto 5000 con ngrok (ejemplo):
+- Exponer el puerto 5001 con ngrok (ejemplo):
 
 ```bash
-ngrok http 5000
+ngrok http 5001
 ```
 
 - Copia la URL pública que te da ngrok (sin `https://`) y pégala cuando el servidor la solicite.

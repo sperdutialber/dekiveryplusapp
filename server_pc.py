@@ -2,7 +2,7 @@ import socket, threading, struct, sys, os, hashlib, base64, http.server
 import sounddevice as sd
 import numpy as np
 
-PORT     = 5000
+PORT     = 5001
 CHUNK    = 2048
 CHANNELS = 1
 RATE     = 44100
